@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:update, :destroy]
+    before_action :set_user, only: [:show, :update, :destroy]
     #GET /users
     def index
       render_ok User.all      
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     end
     #GET /users/{id}
     def show
-      render_ok User.find(params[:id])
+      render_ok @user
     end
     #DELETE /users/{id}
     def destroy
