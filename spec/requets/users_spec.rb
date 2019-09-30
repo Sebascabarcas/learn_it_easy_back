@@ -38,7 +38,7 @@ RSpec.describe 'Users', type: :request do
       # byebug
       req_payload = {
         user: {
-          name: 'Sebastian Andres',
+          names: 'Sebastian Andres',
           first_lastname: 'Cabarcas',
           second_lastname: 'García',
           email: 'sebascabarcas@gmail.com',
