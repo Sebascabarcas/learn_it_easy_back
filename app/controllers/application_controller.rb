@@ -1,12 +1,10 @@
 class ApplicationController < ActionController::API
-  include ActionController::HttpAuthentication::Token::ControllerMethods
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from Exceptions::CurrentUserNotFound, with: :if_user_not_found
   rescue_from Exceptions::TokenExpired, with: :if_token_expired
   rescue_from Exceptions::PasswordTokenExpired, with: :if_password_token_expired
-  rescue_from Exceptions::EmailVerificationTokenExpired,
-              with: :if_email_verification_token_expired
+  rescue_from Exceptions::EmailVerificationTokenExpired, with: :if_email_verification_token_expired
   rescue_from Exceptions::NoCurrentStage, with: :no_current_stage_error
 
   # before_action :get_current_user
