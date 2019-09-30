@@ -4,7 +4,7 @@ class User < ApplicationRecord
   enum role: { student: 0, teacher: 1 }
 
   #Validations
-  validates :name,
+  validates :names,
             :first_lastname,
             :second_lastname,
             :email,
