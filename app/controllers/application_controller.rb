@@ -40,10 +40,10 @@ class ApplicationController < ActionController::API
 
   protected
 
-  # def get_current_user
-  #   set_user_by_token
-  #   raise Exceptions::CurrentUserNotFound unless @current_user
-  # end
+  def get_current_user
+    set_user_by_token
+    raise Exceptions::CurrentUserNotFound unless @current_user
+  end
 
   # def get_current_stage
   #   @current_stage = Stage.find_by(current: true)
@@ -58,22 +58,22 @@ class ApplicationController < ActionController::API
   #   end
   # end
 
-  # def set_user_by_token
-  #   @current_user = nil
-  #   authenticate_with_http_token do |key, options|
-  #     @token = Token.find_by(secret: key)
-  #     expired = @token ? @token.expire_at.past? : false
-  #     if expired
-  #       @token.destroy
-  #       raise Exceptions::TokenExpired
-  #     end
-  #     @current_user = @token.user if @token
-  #     #Raise exceptions if the user is not verified!
-  #     if @current_user.email_verification_status == "not_verified"
-  #       raise Exceptions::EmailVerificationTokenExpired
-  #     end
-  #   end
-  # end
+  def set_user_by_token
+    @current_user = nil
+    authenticate_with_http_token do |key, options|
+      @token = Token.find_by(secret: key)
+      expired = @token ? @token.expire_at.past? : false
+      if expired
+        @token.destroy
+        raise Exceptions::TokenExpired
+      end
+      @current_user = @token.user if @token
+      #Raise exceptions if the user is not verified!
+      if @current_user.email_verification_status == "not_verified"
+        raise Exceptions::EmailVerificationTokenExpired
+      end
+    end
+  end
 
   #This method is general an is used by other methods.
   #This method depends on a variable setted previously named @current_stage
