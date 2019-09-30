@@ -1,10 +1,26 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  include FieldFormatter
   #Enums
-  enum role: {admin: 0, client: 1}
-	
-	#Validations
-	validates :first_name, :second_name, :first_lastname, :second_lastname, :email, :role, presence: true
+  enum role: { student: 0, teacher: 1 }
 
+  #Validations
+  validates :name,
+            :first_lastname,
+            :second_lastname,
+            :email,
+            :role,
+            presence: true
+  # validates :email, uniqueness: true
+  # validates :email, format: {with: /\A(^\S+)[@](\w+)(\.[a-zA-Z0-9]+)+\z/}
+  # validate_enum_attribute :role, message: 'role invalido'
 
-
+  # #Callbacks
+  # before_validation -> { strip_and_downcase_in_ram(:first_name) }
+  # before_validation -> { strip_and_downcase_in_ram(:second_name) }
+  # before_validation -> { strip_and_downcase_in_ram(:first_lastname) }
+  # before_validation -> { strip_and_downcase_in_ram(:second_lastname) }
 end
