@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     #GET /users
     def index
       render_ok User.all      
+      # render json: User.all, status: :ok      
     end
     #POST /users
     def create
@@ -51,7 +52,7 @@ class UsersController < ApplicationController
         :role,
         :email,
         :password,
-        :name,
+        :names,
         :first_lastname,
         :second_lastname,
       )
@@ -62,7 +63,7 @@ class UsersController < ApplicationController
         :role,
         :email,
         :password,
-        :name,
+        :names,
         :first_lastname,
         :second_lastname
       )
