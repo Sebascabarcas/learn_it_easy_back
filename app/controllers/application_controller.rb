@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::API
 
+  include ActionController::HttpAuthentication::Token::ControllerMethods
+
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from Exceptions::CurrentUserNotFound, with: :if_user_not_found
   rescue_from Exceptions::TokenExpired, with: :if_token_expired
