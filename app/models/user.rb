@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_secure_password
   include FieldFormatter
   #Enums
   enum role: { student: 0, teacher: 1 }
@@ -9,6 +10,7 @@ class User < ApplicationRecord
             :second_lastname,
             :email,
             :role,
+            :password,
             presence: true
   # validates :email, uniqueness: true
   # validates :email, format: {with: /\A(^\S+)[@](\w+)(\.[a-zA-Z0-9]+)+\z/}

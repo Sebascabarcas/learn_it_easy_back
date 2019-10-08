@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+    
     before_action :set_user, only: [:show, :update, :destroy]
-    skip_before_action :get_current_user, only: [:show, :index]
+    skip_before_action :get_current_user, only: [:show, :index, :create]
+    
     #GET /users
     def index
       render_ok User.all      
