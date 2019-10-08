@@ -5,4 +5,11 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create, :update, :delete]
   resources :sessions, only: [:create]
   delete 'sessions', to: 'sessions#destroy'
+
+  scope 'forget_password' do
+    post '', to: 'forget_password_tokens#create'
+    get ':token', to: 'forget_password_tokens#show'
+    delete '', to: 'forget_password_tokens#destroy'
+  end
+
 end
