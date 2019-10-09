@@ -40,6 +40,8 @@ class ForgetPasswordTokensController < ApplicationController
   end
 
   def send_url_by_email
-    EmailNotifierWorker.perform_in(5.seconds, 'ForgetPasswordMailer', @user.id, @url, @fp_token.secret)
+    puts(@url)
+    puts(@fp_token.secret)
+    # EmailNotifierWorker.perform_in(5.seconds, 'ForgetPasswordMailer', @user.id, @url, @fp_token.secret)
   end
 end
