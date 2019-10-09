@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_08_182623) do
+ActiveRecord::Schema.define(version: 2019_10_09_000650) do
+
+  create_table "forget_password_tokens", force: :cascade do |t|
+    t.string "secret"
+    t.integer "user_id", null: false
+    t.datetime "expire_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_forget_password_tokens_on_user_id"
+  end
 
   create_table "tokens", force: :cascade do |t|
     t.string "secret"
@@ -35,5 +44,6 @@ ActiveRecord::Schema.define(version: 2019_10_08_182623) do
     t.string "password_digest"
   end
 
+  add_foreign_key "forget_password_tokens", "users"
   add_foreign_key "tokens", "users"
 end
