@@ -26,7 +26,7 @@ gem 'bcrypt', '~> 3.1.13'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors'
+#gem 'rack-cors'
 
 
 group :development, :test do
@@ -38,7 +38,7 @@ group :development, :test do
 end
 
 # Make errors better looking
-gem 'better_errors', '~> 2.5', '>= 2.5.1'
+#gem 'better_errors', '~> 2.5', '>= 2.5.1'
 
 group :test do
   gem 'factory_bot_rails', '~> 4.0'
