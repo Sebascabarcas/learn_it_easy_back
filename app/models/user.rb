@@ -23,5 +23,5 @@ class User < ApplicationRecord
   # before_validation -> { strip_and_downcase_in_ram(:second_lastname) }
 
   scope :teachers, -> { where(role: 1) } 
-  scope :students, -> { where(role: 2) } 
+  scope :students, -> { where(role: 0) } 
 end
