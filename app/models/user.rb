@@ -21,4 +21,7 @@ class User < ApplicationRecord
   # before_validation -> { strip_and_downcase_in_ram(:second_name) }
   # before_validation -> { strip_and_downcase_in_ram(:first_lastname) }
   # before_validation -> { strip_and_downcase_in_ram(:second_lastname) }
+
+  scope :teachers, -> { where(role: 1) } 
+  scope :students, -> { where(role: 2) } 
 end

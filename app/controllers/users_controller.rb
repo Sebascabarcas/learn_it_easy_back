@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
     
     before_action :set_user, only: [:show, :update, :destroy]
+    before_action :set_users, only: [:index]
     skip_before_action :get_current_user, only: [:show, :index, :create]
     
     #GET /users
     def index
-      render_ok params[:page].present? ? User.all.paginate(page: params[:page], per_page: params[:per_page]) : User.all
-      # render json: User.all, status: :ok      
+      render_ok @users
     end
     #POST /users
     def create
@@ -48,6 +48,11 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def set_users
+      @users = params[:user_type]  == 'teacher' ? User.teachers : User.students
+      @users = @users.paginate(page: params[:page], per_page: params[:per_page]) if params[:page] and params[:per_page]
     end
 
     def create_params
