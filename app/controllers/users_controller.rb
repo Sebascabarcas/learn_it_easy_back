@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     
     #GET /users
     def index
-      render_ok User.all      
+      render_ok params[:page].present? ? User.all.paginate(page: params[:page], per_page: params[:per_page]) : User.all
       # render json: User.all, status: :ok      
     end
     #POST /users
